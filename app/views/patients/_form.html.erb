@@ -1,0 +1,67 @@
+<%= form_for @patient do |form| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+      <ul>
+        <% patient.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="border p-2">
+    <legend class="float-none w-auto">Patient info</legend>
+    <div class="field">
+      <%= form.label :first_name %>
+      <%= form.text_field :first_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :last_name %>
+      <%= form.text_field :last_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.text_field :email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :dob %>
+      <%= form.date_select :dob, start_year: 1900 %>
+    </div>
+
+    <div class="field">
+      <%= form.label :phone %>
+      <%= form.text_field :phone %>
+    </div>
+
+    <div class="field">
+      <%= form.label :active %>
+      <%= form.check_box :active %>
+    </div>
+
+    <legend class="mt-2">Patient Address</legend>
+    <hr>
+    <%= form.fields_for :address do |address_form| %>
+      <div class="field">
+        <%= address_form.label :street %>
+        <%= address_form.text_field :street %>
+      </div>
+      <div class="field">
+        <%= address_form.label :zip %>
+        <%= address_form.text_field :zip %>
+      </div>
+      <div class="field">
+        <%= address_form.label :city %>
+        <%= address_form.text_field :city %>
+      </div>
+    <% end %>
+
+  </fieldset>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-success p-2 m-2' %>
+  </div>
+<% end %>

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class ExampleReflex < ApplicationReflex
-  delegate :current_user, to: :connection
+class CommentReflex < ApplicationReflex
   # Add Reflex methods in this file.
   #
   # All Reflex instances include CableReady::Broadcaster and expose the following properties:
