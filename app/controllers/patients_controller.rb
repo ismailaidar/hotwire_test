@@ -4,11 +4,12 @@ class PatientsController < ApplicationController
   # GET /patients or /patients.json
   def index
     @patients = Patient.all
+    @patients = @patients.search(params['query']) if params['query'].present?
+    @pagy, @patients = pagy @patients, items: params.fetch(:count, 10)
   end
 
   # GET /patients/1 or /patients/1.json
-  def show
-  end
+  def show; end
 
   # GET /patients/new
   def new
@@ -17,8 +18,7 @@ class PatientsController < ApplicationController
   end
 
   # GET /patients/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /patients or /patients.json
   def create
@@ -66,6 +66,6 @@ class PatientsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def patient_params
     params.require(:patient).permit(:first_name, :last_name, :email, :dob, :phone, :email, :active,
-                                    address_attributes: [:id, :street, :zip, :city])
+                                    address_attributes: %i[id street zip city])
   end
 end

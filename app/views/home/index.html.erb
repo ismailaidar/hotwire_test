@@ -3,5 +3,7 @@
 <hr>
 <hr>
 
-<div class="row " id="posts">
+<div class="row " id="cards">
+  <p><%= link_to 'active: ', patients_path(active: true) %><%= @active_patients %></p>
+  <p><%= link_to 'inactive: ', patients_path(active: false) %><%= @inactive_patients %></p>
 </div>
