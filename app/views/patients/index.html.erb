@@ -8,8 +8,18 @@
 <% end %>
 
 <%= turbo_frame_tag 'patients' do %>
+  <div class="table">
+    <div class="table-header-group">
+      <%= link_to "f_name", "#", class: 'table-cell pr-4' %>
+      <%= link_to "l_name", "#", class: 'table-cell pr-4' %>
+      <%= link_to "dob", "#", class: 'table-cell pr-4' %>
+      <%= link_to "phone", "#", class: 'table-cell pr-4' %>
+      <%= link_to "email", "#", class: 'table-cell pr-4' %>
+      <%= link_to "active", "#", class: 'table-cell pr-4' %>
+    </div>
+  </div>
   <%= render @patients %>
-<%== pagy_nav @pagy %>
+  <%== pagy_nav @pagy %>
 <% end %>
 <br>
 
